@@ -34,7 +34,16 @@ const ClientTransactionDetails = () => {
         <tr><td>to contractor</td><td>{mockTransaction.beneficiary}</td></tr>
         <tr><td>State</td><td>{mockTransaction.state}</td></tr>
       </tbody></table>
-      <span>Change transaction state</span><button>{mockTransaction.state}</button>
+
+      <span>Change transaction state</span>
+      <div class="dropdown">
+        <button class="dropbtn" style={{ backgroundColor: "green" }}>{mockTransaction.state}</button>
+        <div class="dropdown-content" style={{ backgroundColor: "green" }}>
+          <div>{transactionStates.send}</div>
+          <div>{transactionStates.received}</div>
+          <div>{transactionStates.payed}</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,3 +3,38 @@
 td {
   border: 1px solid;
 }
+
+/* Dropdown main container - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style The Dropdown Button */
+.dropdown .dropbtn {
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Dropdown content items */
+.dropdown-content div {
+  display: block;
+}
+
+/* Change color on dropdown items hover */
+.dropdown-content div:hover {
+  background-color: #f1f1f1
+}
