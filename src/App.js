@@ -1,8 +1,12 @@
 import "./App.css";
+import ClientTransactionCreation from "./components/ClientTransactionCreation";
 
 function App() {
   return (
-    <div style={{"background-color": "orange"}}><h1>Peachtree Bank</h1></div>
+    <div>
+      <div style={{"backgroundColor": "orange"}}><h1>Peachtree Bank</h1></div>
+      <ClientTransactionCreation />
+    </div>
   );
 }
 
