@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const ClientTransactionsHistory = () => {
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
 
   const transactions = useSelector(state => state.transactions);
 

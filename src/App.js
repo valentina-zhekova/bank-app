@@ -12,7 +12,7 @@ function App() {
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
         <ClientTransactionCreation />
         <ClientTransactionsHistory />
-        <ClientTransactionDetails /> {/* TODO: edit later*/}
+        <ClientTransactionDetails transactionId={0} /> {/* TODO: edit later*/}
       </div>
     </Provider>
   );
