@@ -10,22 +10,24 @@ const ClientTransactionDetails = ({ transactionId }) => {
     payed: "Payed"
   };
 
-  const transactions = useSelector(state => state.transactions);
-  const selectedTransaction = transactions[transactionId];
+  const state = useSelector(state => state);
+  const selectedTransaction = state.transactions.filter(t => t.id === transactionId)[0];
+  const relatedAccount = state.accounts.filter(a => a.id === selectedTransaction.beneficiaryId)[0];
+  console.log(111, selectedTransaction);
 
   return (
     <div style={{ backgroundColor: "LightGray" }}>
-      <div style={{ backgroundColor: "DodgerBlue" }}><h3>Details for transaction {transactionId + 1}</h3></div>
+      <div style={{ backgroundColor: "DodgerBlue" }}><h3>Details for transaction {transactionId}</h3></div>
       <table><tbody>
         <tr><td>Amount</td><td>-${selectedTransaction.amount}</td></tr>
         <tr><td>date</td><td>{selectedTransaction.date.getDate()} {monthNames[selectedTransaction.date.getMonth()]} {selectedTransaction.date.getYear()}</td></tr>
-        <tr><td>to contractor</td><td>{selectedTransaction.beneficiary}</td></tr>
+        <tr><td>to contractor</td><td>{relatedAccount.name}</td></tr>
         <tr><td>State</td><td>{selectedTransaction.state}</td></tr>
       </tbody></table>
 
       <span>Change transaction state</span>
       <div class="dropdown">
-        <button class="dropbtn" style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>
+        <button class="dropdown-holder" style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>
         <div class="dropdown-content" style={{ backgroundColor: "green" }}>
           <div>{transactionStates.send}</div>
           <div>{transactionStates.received}</div>

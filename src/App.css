@@ -11,7 +11,7 @@ td {
 }
 
 /* Style The Dropdown Button */
-.dropdown .dropbtn {
+.dropdown .dropdown-holder {
   border: none;
   cursor: pointer;
 }
