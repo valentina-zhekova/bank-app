@@ -19,6 +19,7 @@ const accounts = {
 };
 
 const initialState = {
+  accounts,
   transactions: [
     { date: new Date(2024, 9, 19), thumbnail: accounts.id1.img, beneficiary: accounts.id1.name, type: paymentTypes.card, amount: 82.02 },
     { date: new Date(2024, 9, 19), thumbnail: accounts.id2.img, beneficiary: accounts.id2.name, type: paymentTypes.card, amount: 84.64 },

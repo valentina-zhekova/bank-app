@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ClientTransactionCreation = () => {
+  const accounts = useSelector(state => state.accounts); // TODO: provide as options later
+
   return (
     <div style={{ backgroundColor: "LightGray"}}>
       <div style={{ backgroundColor: "DodgerBlue"}}><h3>Make a Transfer</h3></div>
