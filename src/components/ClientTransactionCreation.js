@@ -23,14 +23,14 @@ const ClientTransactionCreation = () => {
     }
   }
 
-  const [inputValue, setInputValue] = useState("")
+  // const [inputValue, setInputValue] = useState("")
 
   return (
     <div style={{ backgroundColor: "LightGray"}}>
       <div style={{ backgroundColor: "DodgerBlue"}}><h3>Make a Transfer</h3></div>
 
       <p>FROM ACCOUNT</p>
-      <div className="dropdown">
+      {/* <div className="dropdown">
         <input 
           className="dropdown-holder"
           type="text"
@@ -40,13 +40,13 @@ const ClientTransactionCreation = () => {
           onChange={e => setInputValue(e.target.value)}
         />
         <div className="dropdown-content" style={{ backgroundColor: "green" }}>
-          {/* { fromAccounts.map(a => <div key={a.id}>{a.name}</div>) } */}
+          { fromAccounts.map(a => <div key={a.id}>{a.name}</div>) }
           { fromAccounts.map(a => {
             const isMatch = a.indexOf(inputValue) > -1;
             return (<div key={a.id}>{isMatch && <div>{a.name}</div>}</div>);
           }) }
         </div>
-      </div>
+      </div> */}
 
       <p>TO ACCOUNT</p>
       <div className="dropdown">
