@@ -11,8 +11,8 @@ function App() {
       <div style={{ backgroundColor: "orange"}}><h1>Peachtree Bank</h1></div>
       <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly" }}>
         <ClientTransactionCreation />
-        {/*<ClientTransactionsHistory />
-        <ClientTransactionDetails transactionId={1} /> {/* TODO: edit later*/}
+        <ClientTransactionsHistory />
+        {/*<ClientTransactionDetails transactionId={1} /> {/* TODO: edit later*/}
       </div>
     </Provider>
   );

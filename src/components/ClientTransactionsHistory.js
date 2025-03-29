@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import CommonInput from "./CommonInput";
 
 const ClientTransactionsHistory = () => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
@@ -29,6 +30,13 @@ const ClientTransactionsHistory = () => {
   return (
     <div style={{ backgroundColor: "LightGray" }}>
       <div style={{ backgroundColor: "DodgerBlue" }}><h3>Recent Transactions</h3></div>
+      <CommonInput
+        inputValueProp="historyInputValue"
+        errHintProp="historyInputErrHint"
+        demoValue="Search by typing..."
+        validate={input => input == ""} // TODO: update logic
+        errHint="No transaction record matches the criteria."
+      />
       <div>
         {showClientTransactions()}
       </div>
