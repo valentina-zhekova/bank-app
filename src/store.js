@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import { VALIDATION_ERROR } from "./actions/actionTypes";
+import { RESET_ERROR, UPDATE_VALUE, VALIDATION_ERROR } from "./actions/actionTypes";
 import commonInputReducer from "./reducers/commonInputReducer";
 
 const paymentTypes = {
@@ -40,12 +40,13 @@ const initialState = {
     { id: 9, date: new Date(2024, 9, 15), beneficiaryId: 8, type: paymentTypes.card, amount: 75.93, state: transactionStates.send },
     { id: 10, date: new Date(2024, 9, 14), beneficiaryId: 9, type: paymentTypes.online, amount: 142.95, state: transactionStates.send },
   ],
+  inputValue: "",
   errorMsg: ""
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case VALIDATION_ERROR: 
+    case VALIDATION_ERROR, RESET_ERROR, UPDATE_VALUE: 
       return commonInputReducer(state, action);
     default:
       return state;

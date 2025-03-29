@@ -1,0 +1,3 @@
+export const VALIDATION_ERROR = "VALIDATION_ERROR";
+export const RESET_ERROR = "RESET_ERROR";
+export const UPDATE_VALUE = "UPDATE_VALUE";
