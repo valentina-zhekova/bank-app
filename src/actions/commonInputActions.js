@@ -1,16 +1,18 @@
 import { VALIDATION_ERROR, RESET_ERROR, UPDATE_VALUE } from "./actionTypes";
 
-const validationError = () => {
-  console.log("action validation");
+const validationError = (val) => {
+  console.log("action validation", val);
   return {
     type: VALIDATION_ERROR,
+    payload: val
   };
 };
 
-const resetError = () => {
+const resetError = (val) => {
   console.log("action reset");
   return {
     type: RESET_ERROR,
+    payload: val
   };
 };
 

@@ -19,14 +19,14 @@ const CommonInput = ({demoValue}) => {
 
     if (!hasError && errAppeared) {
       console.log(222, "dispatch error");
-      dispatch(validationError());
+      dispatch(validationError(input));
     } else if (hasError && (!errAppeared)) {
       console.log(222, "dispatch reset");
-      dispatch(resetError());
+      dispatch(resetError(input));
+    } else {
+      console.log(222, "dispatch update");
+      dispatch(updateValue(input));
     }
-
-    // console.log(222, "dispatch update");
-    // dispatch(updateValue(input));
   }
 
   return (

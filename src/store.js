@@ -45,8 +45,13 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+  console.log("ROOT", action);
   switch (action.type) {
-    case VALIDATION_ERROR, RESET_ERROR, UPDATE_VALUE: 
+    case VALIDATION_ERROR: 
+      return commonInputReducer(state, action);
+    case RESET_ERROR: 
+      return commonInputReducer(state, action);
+    case UPDATE_VALUE: 
       return commonInputReducer(state, action);
     default:
       return state;
