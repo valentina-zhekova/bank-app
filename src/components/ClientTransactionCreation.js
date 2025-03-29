@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import CommonInput from "./CommonInput";
 
 const ClientTransactionCreation = () => {
   const accounts = useSelector(state => state.accounts); // TODO: provide as options later
@@ -47,17 +48,38 @@ const ClientTransactionCreation = () => {
           }) }
         </div>
       </div> */}
+      <CommonInput
+        inputValueProp="fromAccountInputValue"
+        errHintProp="fromAccountInputErrHint"
+        demoValue="Free Checking(4692) - $5824 76"
+        validate={input => input == "" || accountNames.includes(input)} 
+        errHint="Such account doesn't exist"
+      />
 
       <p>TO ACCOUNT</p>
-      <div className="dropdown">
+      {/* <div className="dropdown">
         <input className="dropdown-holder" placeholder="Georgia Power Electric Company"/>
         <div className="dropdown-content" style={{ backgroundColor: "green" }}>
           { toAccounts.map(a => <div key={a.id}>{a.name}</div>) }
         </div>
-      </div>
+      </div> */}
+      <CommonInput
+        inputValueProp="toAccountInputValue"
+        errHintProp="toAccountInputErrHint"
+        demoValue="Georgia Power Electric Company"
+        validate={input => input == "" || accountNames.includes(input)}
+        errHint="Such account doesn't exist."
+      />
 
       <p>AMOUNT</p>
-      <div><input placeholder="$ 0.00"/></div>
+      <CommonInput
+        inputValueProp="amountInputValue"
+        errHintProp="amountInputErrHint"
+        demoValue="$ 0.00"
+        validate={input => input == "" || /^\d*\.?\d\d?$/.test(input)}
+        errHint="The value should be a number." 
+      />
+
       <button>Submit</button>
 
     </div>

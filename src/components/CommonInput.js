@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { inputUpdateValue, inputRiseError, inputResetError } from "../actions/commonInputActions";
 
-const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate }) => {
+const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate, errHint }) => {
   const dispatch = useDispatch();
 
   const inputValue = useSelector(state => state[inputValueProp]);
@@ -14,7 +14,7 @@ const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate }) 
     const isValid = validate(input);
 
     if (noValidationError && !isValid) {
-      dispatch(inputRiseError(errHintProp));
+      dispatch(inputRiseError(errHintProp, errHint));
     } else if (!noValidationError && isValid) {
       dispatch(inputResetError(errHintProp));
     }
@@ -29,7 +29,7 @@ const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate }) 
         value={inputValue}
         onChange={event => handleChange(event.target.value)}
       />
-      {errorHint}
+      <div>{errorHint}</div>
     </div>
   );
 };

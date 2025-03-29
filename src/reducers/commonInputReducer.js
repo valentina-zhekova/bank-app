@@ -12,7 +12,7 @@ const commonInputReducer = (state, action) => {
     case INPUT_RISE_ERROR:
       return {
         ...state,
-        [action.errHintProp]: "No integers allowed",
+        [action.errHintProp]: action.errHint,
       };
 
     case INPUT_RESET_ERROR:

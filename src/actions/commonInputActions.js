@@ -8,10 +8,11 @@ const inputUpdateValue = (inputValueProp, newValue) => {
   };
 };
 
-const inputRiseError = (errHintProp) => {
+const inputRiseError = (errHintProp, errHint) => {
   return {
     type: INPUT_RISE_ERROR,
     errHintProp,
+    errHint,
   };
 };
 
