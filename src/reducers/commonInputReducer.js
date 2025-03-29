@@ -1,28 +1,26 @@
-import { VALIDATION_ERROR, RESET_ERROR, UPDATE_VALUE } from "../actions/actionTypes";
+import { INPUT_UPDATE_VALUE, INPUT_RISE_ERROR, INPUT_RESET_ERROR } from "../actions/actionTypes";
 
 const commonInputReducer = (state, action) => {
-  console.log("REDUCER", action);
   switch (action.type) {
-    case VALIDATION_ERROR:
-      console.log("reducer validation");
+
+    case INPUT_UPDATE_VALUE:
       return {
         ...state,
-        errorMsg: "No integers allowed",
-        inputValue: action.payload,
+        [action.inputValueProp]: action.newValue,
       };
-    case RESET_ERROR:
-      console.log("reducer reset");
+
+    case INPUT_RISE_ERROR:
       return {
         ...state,
-        errorMsg: "",
-        inputValue: action.payload,
+        [action.errHintProp]: "No integers allowed",
       };
-    case UPDATE_VALUE:
-      console.log("reducer update");
+
+    case INPUT_RESET_ERROR:
       return {
         ...state,
-        inputValue: action.payload,
+        [action.errHintProp]: "",
       };
+
     default:
       return state;
   }

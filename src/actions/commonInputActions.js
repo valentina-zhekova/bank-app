@@ -1,27 +1,25 @@
-import { VALIDATION_ERROR, RESET_ERROR, UPDATE_VALUE } from "./actionTypes";
+import { INPUT_UPDATE_VALUE, INPUT_RISE_ERROR, INPUT_RESET_ERROR } from "./actionTypes";
 
-const validationError = (val) => {
-  console.log("action validation", val);
+const inputUpdateValue = (inputValueProp, newValue) => {
   return {
-    type: VALIDATION_ERROR,
-    payload: val
+    type: INPUT_UPDATE_VALUE,
+    inputValueProp,
+    newValue,
   };
 };
 
-const resetError = (val) => {
-  console.log("action reset");
+const inputRiseError = (errHintProp) => {
   return {
-    type: RESET_ERROR,
-    payload: val
+    type: INPUT_RISE_ERROR,
+    errHintProp,
   };
 };
 
-const updateValue = (val) => {
-  console.log("action update");
+const inputResetError = (errHintProp) => {
   return {
-    type: UPDATE_VALUE,
-    payload: val
+    type: INPUT_RESET_ERROR,
+    errHintProp,
   };
 };
 
-export { validationError, resetError, updateValue };
+export { inputUpdateValue, inputRiseError, inputResetError };

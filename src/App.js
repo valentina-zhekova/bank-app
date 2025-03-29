@@ -14,7 +14,12 @@ function App() {
         {/*<ClientTransactionCreation />
         <ClientTransactionsHistory />
         <ClientTransactionDetails transactionId={1} /> {/* TODO: edit later*/}
-        <CommonInput demoValue="AAAA" /> {/* TODO: edit later*/}
+        <CommonInput
+          inputValueProp="fromAccountInputValue"
+          errHintProp="fromAccountInputErrHint"
+          demoValue="Demo input value"
+          validate={input => !/[1-9]/.test(input)} 
+        /> {/* TODO: edit later*/}
       </div>
     </Provider>
   );

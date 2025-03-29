@@ -1,32 +1,25 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { validationError, resetError, updateValue } from "../actions/commonInputActions";
+import { inputUpdateValue, inputRiseError, inputResetError } from "../actions/commonInputActions";
 
-const CommonInput = ({demoValue}) => {
+const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate }) => {
   const dispatch = useDispatch();
 
+  const inputValue = useSelector(state => state[inputValueProp]);
+  const errorHint = useSelector(state => state[errHintProp]);
 
-  const inputValue = useSelector(state => state.inputValue);
-  const errorMsg = useSelector(state => state.errorMsg);
-  console.log("ENTER", 111, inputValue, 111, errorMsg);
+  const noValidationError = errorHint == ""; // TODO: isEmpty() util
 
-  const hasError = errorMsg != "";
+  function handleChange(input) {
+    const isValid = validate(input);
 
-  function doOnChange(input) {
-
-    const errAppeared = /[1-9]/.test(input);
-    console.log(222, input, 222, hasError, 222, errAppeared);
-
-    if (!hasError && errAppeared) {
-      console.log(222, "dispatch error");
-      dispatch(validationError(input));
-    } else if (hasError && (!errAppeared)) {
-      console.log(222, "dispatch reset");
-      dispatch(resetError(input));
-    } else {
-      console.log(222, "dispatch update");
-      dispatch(updateValue(input));
+    if (noValidationError && !isValid) {
+      dispatch(inputRiseError(errHintProp));
+    } else if (!noValidationError && isValid) {
+      dispatch(inputResetError(errHintProp));
     }
+
+    dispatch(inputUpdateValue(inputValueProp, input));
   }
 
   return (
@@ -34,9 +27,9 @@ const CommonInput = ({demoValue}) => {
       <input 
         placeholder={demoValue} 
         value={inputValue}
-        onChange={event => doOnChange(event.target.value)}
+        onChange={event => handleChange(event.target.value)}
       />
-      {errorMsg}
+      {errorHint}
     </div>
   );
 };
