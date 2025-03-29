@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 const ClientTransactionsHistory = () => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
 
-  const state = useSelector(state => state);
+  const transactions = useSelector(state => state.transactions);
+  const accounts = useSelector(state => state.accounts);
 
   function showClientTransactions() {
-    return state.transactions.map(t => {
-      const relatedAccount = state.accounts.filter(a => a.id === t.beneficiaryId)[0];
+    return transactions.map(t => {
+      const relatedAccount = accounts.filter(a => a.id === t.beneficiaryId)[0];
 
       return (
         <div key={t.id} style={{ display: "flex", flexDirection: "row", alignItems: "center", paddingBottom: 5 }}>

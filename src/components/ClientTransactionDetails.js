@@ -10,10 +10,8 @@ const ClientTransactionDetails = ({ transactionId }) => {
     payed: "Payed"
   };
 
-  const state = useSelector(state => state);
-  const selectedTransaction = state.transactions.filter(t => t.id === transactionId)[0];
-  const relatedAccount = state.accounts.filter(a => a.id === selectedTransaction.beneficiaryId)[0];
-  console.log(111, selectedTransaction);
+  const selectedTransaction = useSelector(state => state.transactions.filter(t => t.id === transactionId)[0]);
+  const relatedAccount = useSelector(state => state.accounts.filter(a => a.id === selectedTransaction.beneficiaryId)[0]);
 
   return (
     <div style={{ backgroundColor: "LightGray" }}>
@@ -26,9 +24,9 @@ const ClientTransactionDetails = ({ transactionId }) => {
       </tbody></table>
 
       <span>Change transaction state</span>
-      <div class="dropdown">
-        <button class="dropdown-holder" style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>
-        <div class="dropdown-content" style={{ backgroundColor: "green" }}>
+      <div className="dropdown">
+        <button className="dropdown-holder" style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>
+        <div className="dropdown-content" style={{ backgroundColor: "green" }}>
           <div>{transactionStates.send}</div>
           <div>{transactionStates.received}</div>
           <div>{transactionStates.payed}</div>
