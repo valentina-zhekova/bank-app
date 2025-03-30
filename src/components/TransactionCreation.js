@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CommonDropdown from "./CommonDropdown";
 import CommonInput from "./CommonInput";
-import { transactionCreationSetInput } from "../actions/transactionCreationActions";
+import { transactionCreationFilterSuggestions, transactionCreationSetInput } from "../actions/transactionCreationActions";
 
 const TransactionCreation = () => {
   const dispatch = useDispatch();
@@ -40,6 +40,10 @@ const TransactionCreation = () => {
             demoValue="Free Checking(4692) - $5824 76"
             validate={input => input === "" || accountNames.includes(input)} 
             errHint="Such account doesn't exist"
+            filter={input => {
+              const filterSuggestions = (i, a) => a.name.toLowerCase().includes(i.toLowerCase());
+              dispatch(transactionCreationFilterSuggestions("fromAccountSuggestions", acc => filterSuggestions(input, acc)))
+            }}
           />
         }
         dropdownOptions={fromAccounts.map(a => a.name)}

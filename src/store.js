@@ -3,6 +3,7 @@ import {
   INPUT_RESET_ERROR, 
   INPUT_UPDATE_VALUE, 
   INPUT_RISE_ERROR,
+  TRANSACTION_CREATION_FILTER_SUGGESTIONS,
   TRANSACTION_CREATION_SET_INPUT,
   TRANSACTION_DETAILS_UPDATE_STATE
 } from "./actions/actionTypes";
@@ -68,6 +69,7 @@ const rootReducer = (state = initialState, action) => {
     case INPUT_RISE_ERROR:
     case INPUT_RESET_ERROR:
       return commonInputReducer(state, action);
+    case TRANSACTION_CREATION_FILTER_SUGGESTIONS:
     case TRANSACTION_CREATION_SET_INPUT:
       return transactionCreationReducer(state, action);
     case TRANSACTION_DETAILS_UPDATE_STATE:
