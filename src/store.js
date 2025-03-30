@@ -5,11 +5,13 @@ import {
   INPUT_RISE_ERROR,
   TRANSACTION_CREATION_FILTER_SUGGESTIONS,
   TRANSACTION_CREATION_SET_INPUT,
-  TRANSACTION_DETAILS_UPDATE_STATE
+  TRANSACTION_DETAILS_UPDATE_STATE,
+  TRANSACTIONS_HISTORY_FILTER_SUGGESTIONS
 } from "./actions/actionTypes";
 import commonInputReducer from "./reducers/commonInputReducer";
 import transactionCreationReducer from "./reducers/transactionCreationReducer";
 import transactionDetailsReducer from "./reducers/transactionDetailsReducer";
+import transactionsHistoryReducer from "./reducers/transactionsHistoryReducer";
 
 const paymentTypes = {
   card: "Card Payment",
@@ -61,6 +63,7 @@ const initialState = {
   historyInputErrHint: "",
   fromAccountSuggestions: accounts,
   toAccountSuggestions: accounts,
+  historySuggestions: transactions,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -74,6 +77,8 @@ const rootReducer = (state = initialState, action) => {
       return transactionCreationReducer(state, action);
     case TRANSACTION_DETAILS_UPDATE_STATE:
       return transactionDetailsReducer(state, action);
+    case TRANSACTIONS_HISTORY_FILTER_SUGGESTIONS:
+      return transactionsHistoryReducer(state, action);
     default:
       return state;
   }

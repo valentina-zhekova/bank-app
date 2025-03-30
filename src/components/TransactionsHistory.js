@@ -1,16 +1,19 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CommonInput from "./CommonInput";
+import { transactionsHisotryFilterSuggestions } from "../actions/transactionsHistoryActions"; 
 
 const TransactionsHistory = () => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
 
-  const transactions = useSelector(state => state.transactions);
+  const dispatch = useDispatch();
+
+  const transactions = useSelector(state => state.historySuggestions);
   const accounts = useSelector(state => state.accounts);
 
   function showClientTransactions() {
     return transactions.map(t => {
-      const relatedAccount = accounts.filter(a => a.id === t.beneficiaryId)[0];
+      const relatedAccount = accounts.find(a => a.id === t.beneficiaryId);
 
       return (
         <div key={t.id} style={{ display: "flex", flexDirection: "row", alignItems: "center", paddingBottom: 5 }}>
@@ -27,6 +30,26 @@ const TransactionsHistory = () => {
     });
   }
 
+  // { id: 1, 
+  //   date: new Date(2024, 9, 19), 
+  //   beneficiaryId: 1, 
+  //   type: paymentTypes.card, 
+  //   amount: 82.02, 
+  //   state: transactionStates.payed 
+  // }
+  const filterSuggestions = (input, suggestion) => {
+    const relatedAccount = accounts.find(a => a.id === suggestion.beneficiaryId);
+
+    return (
+      monthNames[suggestion.date.getMonth()].toLowerCase().includes(input.toLowerCase()) ||
+      suggestion.date.getDate().toString().toLowerCase().includes(input.toLowerCase()) ||
+      relatedAccount.name.toLowerCase().includes(input.toLowerCase()) ||
+      suggestion.type.toLowerCase().includes(input.toLowerCase()) ||
+      suggestion.amount.toString().toLowerCase().includes(input.toLowerCase()) ||
+      suggestion.state.toLowerCase().includes(input.toLowerCase())
+    );
+  };
+
   return (
     <div style={{ backgroundColor: "LightGray" }}>
       <div style={{ backgroundColor: "DodgerBlue" }}><h3>Recent Transactions</h3></div>
@@ -34,8 +57,9 @@ const TransactionsHistory = () => {
         inputValueProp="historyInputValue"
         errHintProp="historyInputErrHint"
         demoValue="Search by typing..."
-        validate={input => input === ""} // TODO: update logic
+        validate={input => input === "" } // TODO: update logic --> reuse filter suggestions
         errHint="No transaction record matches the criteria."
+        filter={input => dispatch(transactionsHisotryFilterSuggestions(tran => filterSuggestions(input, tran)))}
       />
       <div>
         {showClientTransactions()}
