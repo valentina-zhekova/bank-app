@@ -18,14 +18,7 @@ const TransactionCreation = () => {
 
   const accountNames = accounts.map(a => a.name);
 
-  function filterAccountSuggestions(suggestions, event) {
-    const inputValue = event.target.value;
-    if (inputValue === "") {
-      suggestions = accounts;
-    } else {
-      suggestions = suggestions.filter(suggestion => suggestion.name.toLowerCase().includes(inputValue.toLowerCase()));
-    }
-  }
+  const filterSuggestions = (input, suggestion) => suggestion.name.toLowerCase().includes(input.toLowerCase());
 
   return (
     <div style={{ backgroundColor: "LightGray"}}>
@@ -40,10 +33,7 @@ const TransactionCreation = () => {
             demoValue="Free Checking(4692) - $5824 76"
             validate={input => input === "" || accountNames.includes(input)} 
             errHint="Such account doesn't exist"
-            filter={input => {
-              const filterSuggestions = (i, a) => a.name.toLowerCase().includes(i.toLowerCase());
-              dispatch(transactionCreationFilterSuggestions("fromAccountSuggestions", acc => filterSuggestions(input, acc)))
-            }}
+            filter={input => dispatch(transactionCreationFilterSuggestions("fromAccountSuggestions", acc => filterSuggestions(input, acc)))}
           />
         }
         dropdownOptions={fromAccounts.map(a => a.name)}
@@ -59,6 +49,7 @@ const TransactionCreation = () => {
             demoValue="Georgia Power Electric Company"
             validate={input => input === "" || accountNames.includes(input)} 
             errHint="Such account doesn't exist"
+            filter={input => dispatch(transactionCreationFilterSuggestions("toAccountSuggestions", acc => filterSuggestions(input, acc)))}
           />
         }
         dropdownOptions={toAccounts.map(a => a.name)}
