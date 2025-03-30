@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CommonInput from "./CommonInput";
 
-const ClientTransactionCreation = () => {
+const TransactionCreation = () => {
   const accounts = useSelector(state => state.accounts); // TODO: provide as options later
   let fromAccounts = accounts;
   let toAccounts = accounts;
@@ -16,7 +16,7 @@ const ClientTransactionCreation = () => {
 
   function filterAccountSuggestions(suggestions, event) {
     const inputValue = event.target.value;
-    if (inputValue == "") {
+    if (inputValue === "") {
       suggestions = accounts;
     } else {
       suggestions = suggestions.filter(suggestion => suggestion.name.toLowerCase().includes(inputValue.toLowerCase()));
@@ -51,7 +51,7 @@ const ClientTransactionCreation = () => {
         inputValueProp="fromAccountInputValue"
         errHintProp="fromAccountInputErrHint"
         demoValue="Free Checking(4692) - $5824 76"
-        validate={input => input == "" || accountNames.includes(input)} 
+        validate={input => input === "" || accountNames.includes(input)} 
         errHint="Such account doesn't exist"
       />
 
@@ -66,7 +66,7 @@ const ClientTransactionCreation = () => {
         inputValueProp="toAccountInputValue"
         errHintProp="toAccountInputErrHint"
         demoValue="Georgia Power Electric Company"
-        validate={input => input == "" || accountNames.includes(input)}
+        validate={input => input === "" || accountNames.includes(input)}
         errHint="Such account doesn't exist."
       />
 
@@ -75,7 +75,7 @@ const ClientTransactionCreation = () => {
         inputValueProp="amountInputValue"
         errHintProp="amountInputErrHint"
         demoValue="$ 0.00"
-        validate={input => input == "" || /^\d*\.?\d\d?$/.test(input)}
+        validate={input => input === "" || /^\d*\.?\d\d?$/.test(input)}
         errHint="The value should be a number." 
       />
 
@@ -85,4 +85,4 @@ const ClientTransactionCreation = () => {
   );
 };
 
-export default ClientTransactionCreation;
+export default TransactionCreation;

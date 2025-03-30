@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CommonInput from "./CommonInput";
 
-const ClientTransactionsHistory = () => {
+const TransactionsHistory = () => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
 
   const transactions = useSelector(state => state.transactions);
@@ -34,7 +34,7 @@ const ClientTransactionsHistory = () => {
         inputValueProp="historyInputValue"
         errHintProp="historyInputErrHint"
         demoValue="Search by typing..."
-        validate={input => input == ""} // TODO: update logic
+        validate={input => input === ""} // TODO: update logic
         errHint="No transaction record matches the criteria."
       />
       <div>
@@ -44,4 +44,4 @@ const ClientTransactionsHistory = () => {
   );
 };
 
-export default ClientTransactionsHistory;
+export default TransactionsHistory;

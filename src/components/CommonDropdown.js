@@ -4,8 +4,6 @@ import React from "react";
 // dropdownOptions -> array of values to show (note: dropdown just shows items, a filter component would mutate the list)
 // handleClick -> what to do on selecting value, e.g. pass a function
 const CommonDropdwon = ({ dropdownSubject, dropdownOptions, handleClick }) => {
-  const dispatch = useDispatch();
-
   function showDropdownOptions() {
     return dropdownOptions.map((item, index) => {
         return (

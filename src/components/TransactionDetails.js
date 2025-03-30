@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { transactionDetailsUpdateState } from '../actions/transactionDetailsActions';
 import CommonDropdown from "./CommonDropdown";
 
-const ClientTransactionDetails = ({ transactionId }) => {
+const TransactionDetails = ({ transactionId }) => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
 
   const transactionStates = { // TODO move to common
@@ -40,4 +40,4 @@ const ClientTransactionDetails = ({ transactionId }) => {
   );
 };
 
-export default ClientTransactionDetails;
+export default TransactionDetails;
