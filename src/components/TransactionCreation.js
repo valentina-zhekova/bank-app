@@ -1,10 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import CommonDropdown from "./CommonDropdown";
 import CommonInput from "./CommonInput";
+import { transactionCreationSetInput } from "../actions/transactionCreationActions";
 
 const TransactionCreation = () => {
+  const dispatch = useDispatch();
+
   const accounts = useSelector(state => state.accounts); // TODO: provide as options later
-  let fromAccounts = accounts;
+  let fromAccounts = useSelector(state => state.fromAccountSuggestions);
   let toAccounts = accounts;
   
   const accountNameToId = new Map();
@@ -47,12 +51,25 @@ const TransactionCreation = () => {
           }) }
         </div>
       </div> */}
-      <CommonInput
+      {/* <CommonInput
         inputValueProp="fromAccountInputValue"
         errHintProp="fromAccountInputErrHint"
         demoValue="Free Checking(4692) - $5824 76"
         validate={input => input === "" || accountNames.includes(input)} 
         errHint="Such account doesn't exist"
+      /> */}
+      <CommonDropdown
+        dropdownSubject={
+          <CommonInput
+            inputValueProp="fromAccountInputValue"
+            errHintProp="fromAccountInputErrHint"
+            demoValue="Free Checking(4692) - $5824 76"
+            validate={input => input === "" || accountNames.includes(input)} 
+            errHint="Such account doesn't exist"
+          />
+        }
+        dropdownOptions={fromAccounts.map(a => a.name)}
+        handleClick={selectedAccount => dispatch(transactionCreationSetInput("fromAccountInputValue", selectedAccount))}
       />
 
       <p>TO ACCOUNT</p>

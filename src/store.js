@@ -1,6 +1,13 @@
 import { createStore } from "redux";
-import { INPUT_RESET_ERROR, INPUT_UPDATE_VALUE, INPUT_RISE_ERROR, TRANSACTION_DETAILS_UPDATE_STATE } from "./actions/actionTypes";
+import { 
+  INPUT_RESET_ERROR, 
+  INPUT_UPDATE_VALUE, 
+  INPUT_RISE_ERROR,
+  TRANSACTION_CREATION_SET_INPUT,
+  TRANSACTION_DETAILS_UPDATE_STATE
+} from "./actions/actionTypes";
 import commonInputReducer from "./reducers/commonInputReducer";
+import transactionCreationReducer from "./reducers/transactionCreationReducer";
 import transactionDetailsReducer from "./reducers/transactionDetailsReducer";
 
 const paymentTypes = {
@@ -51,6 +58,8 @@ const initialState = {
   amountInputErrHint: "",
   historyInputValue: "",
   historyInputErrHint: "",
+  fromAccountSuggestions: accounts,
+  toAccountSuggestions: accounts,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -59,6 +68,8 @@ const rootReducer = (state = initialState, action) => {
     case INPUT_RISE_ERROR:
     case INPUT_RESET_ERROR:
       return commonInputReducer(state, action);
+    case TRANSACTION_CREATION_SET_INPUT:
+      return transactionCreationReducer(state, action);
     case TRANSACTION_DETAILS_UPDATE_STATE:
       return transactionDetailsReducer(state, action);
     default:

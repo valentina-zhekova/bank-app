@@ -7,7 +7,13 @@ const CommonDropdwon = ({ dropdownSubject, dropdownOptions, handleClick }) => {
   function showDropdownOptions() {
     return dropdownOptions.map((item, index) => {
         return (
-          <div key={index} onClick={() => handleClick(item)}>{item}</div>
+          <div
+            key={index} 
+            onClick={() => handleClick(item)}
+            style={{ backgroundColor: "green" }}
+          >
+            {item}
+          </div>
         );
       });
   }
