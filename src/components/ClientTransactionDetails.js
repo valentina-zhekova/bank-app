@@ -1,5 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { transactionDetailsUpdateState } from '../actions/transactionDetailsActions';
+import CommonDropdown from "./CommonDropdown";
 
 const ClientTransactionDetails = ({ transactionId }) => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
@@ -10,8 +12,12 @@ const ClientTransactionDetails = ({ transactionId }) => {
     payed: "Payed"
   };
 
-  const selectedTransaction = useSelector(state => state.transactions.filter(t => t.id === transactionId)[0]);
-  const relatedAccount = useSelector(state => state.accounts.filter(a => a.id === selectedTransaction.beneficiaryId)[0]);
+  const dispatch = useDispatch();
+
+  const transactions = useSelector(state => state.transactions);
+  const selectedTransaction = transactions.find(t => t.id === transactionId);
+  const accounts = useSelector(state => state.accounts);
+  const relatedAccount = accounts.find(a => a.id === selectedTransaction.beneficiaryId);
 
   return (
     <div style={{ backgroundColor: "LightGray" }}>
@@ -24,14 +30,12 @@ const ClientTransactionDetails = ({ transactionId }) => {
       </tbody></table>
 
       <span>Change transaction state</span>
-      <div className="dropdown">
-        <button className="dropdown-holder" style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>
-        <div className="dropdown-content" style={{ backgroundColor: "green" }}>
-          <div>{transactionStates.send}</div>
-          <div>{transactionStates.received}</div>
-          <div>{transactionStates.payed}</div>
-        </div>
-      </div>
+      <CommonDropdown
+        dropdownSubject={<button style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>}
+        dropdownOptions={[transactionStates.send, transactionStates.received, transactionStates.payed]}
+        handleClick={newState => dispatch(transactionDetailsUpdateState(transactionId, newState))}
+      />
+
     </div>
   );
 };

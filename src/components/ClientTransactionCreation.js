@@ -15,7 +15,6 @@ const ClientTransactionCreation = () => {
   const accountNames = accounts.map(a => a.name);
 
   function filterAccountSuggestions(suggestions, event) {
-    console.log(111, "CHANGE");
     const inputValue = event.target.value;
     if (inputValue == "") {
       suggestions = accounts;
