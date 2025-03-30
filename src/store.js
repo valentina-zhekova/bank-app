@@ -1,5 +1,6 @@
 import { createStore } from "redux";
-import { INPUT_RESET_ERROR, INPUT_UPDATE_VALUE, INPUT_RISE_ERROR } from "./actions/actionTypes";
+import { DROPDOWN_SELECT_VALUE, INPUT_RESET_ERROR, INPUT_UPDATE_VALUE, INPUT_RISE_ERROR } from "./actions/actionTypes";
+import commonDropdownReducer from "./reducers/commonDropdownReducer";
 import commonInputReducer from "./reducers/commonInputReducer";
 
 const paymentTypes = {
@@ -52,6 +53,8 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case DROPDOWN_SELECT_VALUE:
+      return commonDropdownReducer(state, action);
     case INPUT_UPDATE_VALUE:
     case INPUT_RISE_ERROR:
     case INPUT_RESET_ERROR:
