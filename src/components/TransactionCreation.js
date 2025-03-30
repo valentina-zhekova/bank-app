@@ -2,7 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CommonDropdown from "./CommonDropdown";
 import CommonInput from "./CommonInput";
-import { transactionCreationFilterSuggestions, transactionCreationSetInput } from "../actions/transactionCreationActions";
+import { 
+  transactionCreationAddNew, 
+  transactionCreationFilterSuggestions, 
+  transactionCreationSetInput,
+  transactionCreationSubmitErr
+} from "../actions/transactionCreationActions";
+import { transactionsHisotryFilterSuggestions } from "../actions/transactionsHistoryActions";
 
 const TransactionCreation = () => {
   const dispatch = useDispatch();
@@ -19,6 +25,18 @@ const TransactionCreation = () => {
   const accountNames = accounts.map(a => a.name);
 
   const filterSuggestions = (input, suggestion) => suggestion.name.toLowerCase().includes(input.toLowerCase());
+
+  const submitTransactionErrHint = useSelector(state => state.submitTransactionErrHint);
+  const fromAccount = useSelector(state => state.fromAccountInputValue);
+  const toAccount = useSelector(state => state.toAccountInputValue);
+  const amount = useSelector(state => state.amountInputValue);
+  function isFormValid() {
+    if (!accountNames.includes(fromAccount)) return false;
+    if (!accountNames.includes(toAccount)) return false;
+    if (isNaN(parseFloat(amount))) return false;
+
+    return true;
+  }
 
   return (
     <div style={{ backgroundColor: "LightGray"}}>
@@ -65,7 +83,22 @@ const TransactionCreation = () => {
         errHint="The value should be a number." 
       />
 
-      <button>Submit</button>
+      <div>
+        <button 
+          onClick={() => {
+            if (isFormValid()) {
+              const relatedAccount = accounts.find(a => a.name === toAccount);
+              dispatch(transactionCreationAddNew(relatedAccount.id, amount));
+              dispatch(transactionsHisotryFilterSuggestions(() => true));
+            } else {
+              dispatch(transactionCreationSubmitErr()); // TODO dispatch warning
+            }
+          }}
+        >
+          Submit
+        </button>
+        <div>{submitTransactionErrHint}</div>
+      </div>
 
     </div>
   );

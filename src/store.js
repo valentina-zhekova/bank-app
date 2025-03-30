@@ -3,8 +3,10 @@ import {
   INPUT_RESET_ERROR, 
   INPUT_UPDATE_VALUE, 
   INPUT_RISE_ERROR,
+  TRANSACTION_CREATION_ADD_NEW,
   TRANSACTION_CREATION_FILTER_SUGGESTIONS,
   TRANSACTION_CREATION_SET_INPUT,
+  TRANSACTION_CREATION_SUBMIT_ERR,
   TRANSACTION_DETAILS_CLOSE,
   TRANSACTION_DETAILS_UPDATE_STATE,
   TRANSACTIONS_HISTORY_FILTER_SUGGESTIONS,
@@ -56,6 +58,7 @@ const initialState = {
   accounts,
   transactions,
   selectedTransactionId: null,
+  submitTransactionErrHint: "",
   fromAccountInputValue: "",
   fromAccountInputErrHint: "",
   toAccountInputValue: "",
@@ -75,8 +78,10 @@ const rootReducer = (state = initialState, action) => {
     case INPUT_RISE_ERROR:
     case INPUT_RESET_ERROR:
       return commonInputReducer(state, action);
+    case TRANSACTION_CREATION_ADD_NEW:
     case TRANSACTION_CREATION_FILTER_SUGGESTIONS:
     case TRANSACTION_CREATION_SET_INPUT:
+    case TRANSACTION_CREATION_SUBMIT_ERR:
       return transactionCreationReducer(state, action);
     case TRANSACTION_DETAILS_CLOSE:
     case TRANSACTION_DETAILS_UPDATE_STATE:
