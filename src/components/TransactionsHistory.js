@@ -30,13 +30,6 @@ const TransactionsHistory = () => {
     });
   }
 
-  // { id: 1, 
-  //   date: new Date(2024, 9, 19), 
-  //   beneficiaryId: 1, 
-  //   type: paymentTypes.card, 
-  //   amount: 82.02, 
-  //   state: transactionStates.payed 
-  // }
   const filterSuggestions = (input, suggestion) => {
     const relatedAccount = accounts.find(a => a.id === suggestion.beneficiaryId);
 
@@ -57,7 +50,7 @@ const TransactionsHistory = () => {
         inputValueProp="historyInputValue"
         errHintProp="historyInputErrHint"
         demoValue="Search by typing..."
-        validate={input => input === "" } // TODO: update logic --> reuse filter suggestions
+        validate={input => input === "" || transactions.some(t => filterSuggestions(input, t)) }
         errHint="No transaction record matches the criteria."
         filter={input => dispatch(transactionsHisotryFilterSuggestions(tran => filterSuggestions(input, tran)))}
       />
