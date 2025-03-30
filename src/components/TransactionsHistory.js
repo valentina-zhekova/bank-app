@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CommonInput from "./CommonInput";
-import { transactionsHisotryFilterSuggestions } from "../actions/transactionsHistoryActions"; 
+import { transactionsHisotryFilterSuggestions, transactionsHisotryShowDetails } from "../actions/transactionsHistoryActions"; 
 
 const TransactionsHistory = () => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // TODO move to common
@@ -16,7 +16,11 @@ const TransactionsHistory = () => {
       const relatedAccount = accounts.find(a => a.id === t.beneficiaryId);
 
       return (
-        <div key={t.id} style={{ display: "flex", flexDirection: "row", alignItems: "center", paddingBottom: 5 }}>
+        <div 
+          key={t.id}
+          onClick={() => dispatch(transactionsHisotryShowDetails(t.id))} 
+          style={{ display: "flex", flexDirection: "row", alignItems: "center", paddingBottom: 5 }}
+        >
           <span style={{padding: 5}}>{monthNames[t.date.getMonth()]}</span>
           <span style={{padding: 5}}>{t.date.getDate()}</span>
           <img src={relatedAccount.thumbnail} alt="" />

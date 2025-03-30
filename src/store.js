@@ -6,7 +6,8 @@ import {
   TRANSACTION_CREATION_FILTER_SUGGESTIONS,
   TRANSACTION_CREATION_SET_INPUT,
   TRANSACTION_DETAILS_UPDATE_STATE,
-  TRANSACTIONS_HISTORY_FILTER_SUGGESTIONS
+  TRANSACTIONS_HISTORY_FILTER_SUGGESTIONS,
+  TRANSACTIONS_HISTORY_SHOW_DETAILS
 } from "./actions/actionTypes";
 import commonInputReducer from "./reducers/commonInputReducer";
 import transactionCreationReducer from "./reducers/transactionCreationReducer";
@@ -53,6 +54,7 @@ const transactions = [
 const initialState = {
   accounts,
   transactions,
+  selectedTransactionId: null,
   fromAccountInputValue: "",
   fromAccountInputErrHint: "",
   toAccountInputValue: "",
@@ -78,6 +80,7 @@ const rootReducer = (state = initialState, action) => {
     case TRANSACTION_DETAILS_UPDATE_STATE:
       return transactionDetailsReducer(state, action);
     case TRANSACTIONS_HISTORY_FILTER_SUGGESTIONS:
+    case TRANSACTIONS_HISTORY_SHOW_DETAILS:
       return transactionsHistoryReducer(state, action);
     default:
       return state;
