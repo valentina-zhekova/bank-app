@@ -8,6 +8,7 @@ const transactionCreationReducer = (state, action) => {
     return {
       ...state,
       [action.propNameInputValue]: action.newValue,
+      [action.propNameErrHint]: "",
     };
 
     default:

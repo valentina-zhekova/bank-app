@@ -69,7 +69,7 @@ const TransactionCreation = () => {
           />
         }
         dropdownOptions={fromAccounts.map(a => a.name)}
-        handleClick={selectedAccount => dispatch(transactionCreationSetInput("fromAccountInputValue", selectedAccount))}
+        handleClick={selectedAccount => dispatch(transactionCreationSetInput("fromAccountInputValue", "fromAccountInputErrHint", selectedAccount))}
       />
 
       <p>TO ACCOUNT</p>
