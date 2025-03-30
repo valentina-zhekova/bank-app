@@ -8,7 +8,7 @@ const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate, er
   const inputValue = useSelector(state => state[inputValueProp]);
   const errorHint = useSelector(state => state[errHintProp]);
 
-  const noValidationError = errorHint == ""; // TODO: isEmpty() util
+  const noValidationError = errorHint === ""; // TODO: isEmpty() util
 
   function handleChange(input) {
     const isValid = validate(input);
