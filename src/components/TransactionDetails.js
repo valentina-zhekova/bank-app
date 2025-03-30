@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { transactionDetailsUpdateState } from '../actions/transactionDetailsActions';
+import { transactionDetailsClose, transactionDetailsUpdateState } from '../actions/transactionDetailsActions';
 import CommonDropdown from "./CommonDropdown";
 
 const TransactionDetails = ({ transactionId }) => {
@@ -21,7 +21,10 @@ const TransactionDetails = ({ transactionId }) => {
 
   return (
     <div style={{ backgroundColor: "LightGray" }}>
-      <div style={{ backgroundColor: "DodgerBlue" }}><h3>Details for transaction {transactionId}</h3></div>
+      <div style={{ backgroundColor: "DodgerBlue" }}>
+        <h3>Details for transaction {transactionId}</h3>
+        <button onClick={() => dispatch(transactionDetailsClose())}>Close</button>
+      </div>
       <table><tbody>
         <tr><td>Amount</td><td>-${selectedTransaction.amount}</td></tr>
         <tr><td>date</td><td>{selectedTransaction.date.getDate()} {monthNames[selectedTransaction.date.getMonth()]} {selectedTransaction.date.getYear()}</td></tr>

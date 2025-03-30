@@ -7,7 +7,7 @@ const TransactionsView = () => {
   const selectedTransactionId = useSelector(state => state.selectedTransactionId);
 
   return (
-    <div>{ selectedTransactionId ? <TransactionDetails transactionId={1} /> : <TransactionsHistory />}</div>
+    <div>{ selectedTransactionId ? <TransactionDetails transactionId={selectedTransactionId} /> : <TransactionsHistory />}</div>
   );
 }
 

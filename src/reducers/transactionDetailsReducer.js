@@ -1,7 +1,13 @@
-import { TRANSACTION_DETAILS_UPDATE_STATE } from "../actions/actionTypes";
+import { TRANSACTION_DETAILS_CLOSE, TRANSACTION_DETAILS_UPDATE_STATE } from "../actions/actionTypes";
 
 const transactionDetailsReducer = (state, action) => {
   switch (action.type) {
+
+    case TRANSACTION_DETAILS_CLOSE:
+      return {
+        ...state,
+        selectedTransactionId: null,
+      };
 
     case TRANSACTION_DETAILS_UPDATE_STATE:
       const newState = {...state, transactions: [...state.transactions]};
