@@ -23,7 +23,7 @@ const TransactionsHistory = () => {
         >
           <span style={{padding: 5}}>{monthNames[t.date.getMonth()]}</span>
           <span style={{padding: 5}}>{t.date.getDate()}</span>
-          <img src={relatedAccount.thumbnail} alt="" />
+          <img src={relatedAccount.img} alt="" />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{padding: 5}}>{relatedAccount.name}</span>
             <span style={{padding: 5}}>{t.type}</span>
