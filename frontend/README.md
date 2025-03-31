@@ -1,13 +1,20 @@
-# bank-app
+# Bank-App frontend
 
-<!-- TODO: make it informative -->
+UI server bootstrapped with Create-React-App.
 
-To install the required packages run in the current directory:
+## How to Start
+
+To start the UI at `localhost:3000` execute the following commands in the current directory:
+
+1. Ensure the backend server is up and running at `localhost:7000`
+   (For more information check `<repo-root>/backend/README.md`)
+
+2. Ensure necessary packages are installed:
 ```
 npm install
 ```
 
-To start a server on `localhost:3000` run in the current directory:
+3. Start the server:
 ```
 npm start
 ```
