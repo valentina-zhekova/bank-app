@@ -20,8 +20,8 @@ const TransactionDetails = ({ transactionId }) => {
   const relatedAccount = accounts.find(a => a.id === selectedTransaction.beneficiaryId);
 
   return (
-    <div style={{ backgroundColor: "LightGray" }}>
-      <div style={{ backgroundColor: "DodgerBlue" }}>
+    <div className="sub-section">
+      <div className="sub-section-header">
         <h3>Details for transaction {transactionId}</h3>
         <button onClick={() => dispatch(transactionDetailsClose())}>Close</button>
       </div>
@@ -34,7 +34,7 @@ const TransactionDetails = ({ transactionId }) => {
 
       <span>Change transaction state</span>
       <CommonDropdown
-        dropdownSubject={<button style={{ backgroundColor: "green" }}>{selectedTransaction.state}</button>}
+        dropdownSubject={<button>{selectedTransaction.state}</button>}
         dropdownOptions={[transactionStates.send, transactionStates.received, transactionStates.payed]}
         handleClick={newState => dispatch(transactionDetailsUpdateState(transactionId, newState))}
       />

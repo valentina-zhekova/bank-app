@@ -39,8 +39,8 @@ const TransactionCreation = () => {
   }
 
   return (
-    <div style={{ backgroundColor: "LightGray"}}>
-      <div style={{ backgroundColor: "DodgerBlue"}}><h3>Make a Transfer</h3></div>
+    <div className="create-transaction">
+      <div className="sub-section-header"><h3>Make a Transfer</h3></div>
 
       <p>FROM ACCOUNT</p>
       <CommonDropdown

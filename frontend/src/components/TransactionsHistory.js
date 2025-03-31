@@ -19,16 +19,16 @@ const TransactionsHistory = () => {
         <div 
           key={t.id}
           onClick={() => dispatch(transactionsHisotryShowDetails(t.id))} 
-          style={{ display: "flex", flexDirection: "row", alignItems: "center", paddingBottom: 5 }}
+          style={{ display: "flex", flexDirection: "row", alignItems: "center", margin: 5, justifyContent: "space-around", border: "1px solid LightGrey" }}
         >
-          <span style={{padding: 5}}>{monthNames[t.date.getMonth()]}</span>
-          <span style={{padding: 5}}>{t.date.getDate()}</span>
+          <span style={{ flexBasis: "5%", padding: 5}}>{monthNames[t.date.getMonth()]}</span>
+          <span style={{ flexBasis: "5%", padding: 5}}>{t.date.getDate()}</span>
           <img src={relatedAccount.img} alt="" />
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{padding: 5}}>{relatedAccount.name}</span>
-            <span style={{padding: 5}}>{t.type}</span>
+          <div style={{ flexBasis: "60%", display: "flex", flexDirection: "column" }}>
+            <span>{relatedAccount.name}</span>
+            <span>{t.type}</span>
           </div>
-          <span style={{padding: 5}}>-${t.amount}</span>
+          <span style={{flexBasis: "10%", padding: 5}}>-${t.amount}</span>
         </div>
       );
     });
@@ -48,8 +48,8 @@ const TransactionsHistory = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "LightGray" }}>
-      <div style={{ backgroundColor: "DodgerBlue" }}><h3>Recent Transactions</h3></div>
+    <div className="sub-section">
+      <div className="sub-section-header"><h3>Recent Transactions</h3></div>
       <CommonInput
         inputValueProp="historyInputValue"
         errHintProp="historyInputErrHint"

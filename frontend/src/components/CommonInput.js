@@ -26,8 +26,9 @@ const CommonInput = ({ inputValueProp, errHintProp, demoValue = "", validate, er
 
   return (
     <div>
-      <div>{errorHint}</div>
-      <input 
+      <div className="input-error">{errorHint}</div>
+      <input
+        className="input-style" 
         placeholder={demoValue} 
         value={inputValue}
         onChange={event => handleChange(event.target.value)}

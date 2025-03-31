@@ -10,7 +10,7 @@ const CommonDropdwon = ({ dropdownSubject, dropdownOptions, handleClick }) => {
           <div
             key={index} 
             onClick={() => handleClick(item)}
-            style={{ backgroundColor: "green" }}
+            className="dropdown-item"
           >
             {item}
           </div>
